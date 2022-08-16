@@ -1,7 +1,18 @@
 class Api::V1::UsersController < Api::V1::BaseController
   skip_before_action :verify_request, only: [:login]
 
+  def attendee_page
+    @upcomming = @current_user.booked_trips.where("status IN ('open', 'ongoing')")
+    @past = @current_user.booked_trips.where(status: "closed")
+    @bookmarks = @current_user.saved_trips
+    render json: {upcomming: @upcomming, past: @past, bookmarks: @bookmarks}
+  end
 
+  def admin_page
+    @upcomming = @current_user.trips.where("status IN ('open', 'ongoing')")
+    @past = @current_user.trips.where(status: "closed")
+    render json: {upcomming: @upcomming, past: @past}
+  end
 
   def login
     code = params[:code]

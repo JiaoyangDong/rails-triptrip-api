@@ -16,8 +16,8 @@ Rails.application.routes.draw do
       # get 'profile/:id', to: 'users#profile_page'
       # resources :bookings, only: [:show]
 
-      # get 'attendees/:id', to: 'users#attendee_page'
-
+      get 'attendees/:id', to: 'users#attendee_page'
+      get 'admins/:id', to: 'users#admin_page'
     end
 
   end
