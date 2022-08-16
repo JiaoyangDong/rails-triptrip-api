@@ -27,6 +27,12 @@ trips = JSON.parse(URI.open(trip_url).read)["results"].first(10)
 TITLE = %w["Hiking in the mountains", "Yoga & Meditation Retreat", "Camping in the forest", "Memorable journey to the scenic sites", "Rascals on the road - Waterfalls", "Weekend getaway", "Countrywalk for the city dwellers", "Weekend in bamboo forest & reservoir", "Stand-up paddling in the lake", "Escape the city life - Mindful Retreat" ]
 CITY = %w["Moganshan", "Anhui", "Anji", "Ningbo", "Chongming", "Moganshan", "Xianju", "Hangzhou", "Anji", "Moganshan"]
 
+TAGS = %w[Hiking One-day Weekend Pet-friendly Family Relaxing Adventure Biking]
+
+# Seed tags
+TAGS.each do |tag|
+  Tag.create(name: tag)
+end
 
 # seed User & Trip
 10.times do |n|
@@ -43,6 +49,8 @@ CITY = %w["Moganshan", "Anhui", "Anji", "Ningbo", "Chongming", "Moganshan", "Xia
       status: %w[open ongoing closed].sample,
       capacity: [8, 10, 15, 16, 20, 30].sample
     )
+      trip.tags << Tag.all.sample(rand(1..3))
+      # trip.save
       p "Added new trip: #{trip.title}"
     end
   end
