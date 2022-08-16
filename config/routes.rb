@@ -3,4 +3,19 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :trips, only: [:show, :index]
+      # resources :pets, only: [:show, :index, :create, :update, :destroy] do
+        # member do
+        #   post 'upload'
+        # end
+        # resources :bookings, only: [:create]
+      # end
+      # post 'login', to: 'users#login', as: :login
+      # get 'profile/:id', to: 'users#profile_page'
+      # resources :bookings, only: [:show]
+    end
+
+  end
 end
