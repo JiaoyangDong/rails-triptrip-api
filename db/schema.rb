@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_16_081706) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_16_130717) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_081706) do
     t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_bookings_on_trip_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "trip_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_bookmarks_on_trip_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -85,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_081706) do
   add_foreign_key "answers", "questions"
   add_foreign_key "bookings", "trips"
   add_foreign_key "bookings", "users"
+  add_foreign_key "bookmarks", "trips"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "questions", "trips"
   add_foreign_key "trip_tags", "tags"
   add_foreign_key "trip_tags", "trips"

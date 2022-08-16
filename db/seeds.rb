@@ -9,6 +9,7 @@
 Answer.destroy_all
 Question.destroy_all
 Booking.destroy_all
+Bookmark.destroy_all
 Trip.destroy_all
 User.destroy_all
 
@@ -62,5 +63,14 @@ Trip.all.each do |trip|
     p "add new booking."
   else
     p "fail to add new booking"
+  end
+end
+
+# Seed Bookmarks
+User.all.each do |user|
+  if b = Bookmark.create(user: user, trip: Trip.all.sample)
+    p "add new bookmark."
+  else
+    p "fail to add new bookmark"
   end
 end
