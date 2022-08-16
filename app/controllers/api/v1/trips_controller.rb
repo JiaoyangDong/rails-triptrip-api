@@ -1,4 +1,4 @@
-class Api::V1::TripsController < ApplicationController
+class Api::V1::TripsController < Api::V1::BaseController
   def index
     if params["filter"].nil?
       @trips = Trip.all

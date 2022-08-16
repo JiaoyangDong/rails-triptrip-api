@@ -13,12 +13,11 @@ Bookmark.destroy_all
 Trip.destroy_all
 User.destroy_all
 
-admin = User.create(name: "John Doe", image: "https://res.cloudinary.com/wagon/image/upload/v1/cache/41c0e9dcfa12f55daefaff6bf18d4b28.png", phone: "15618653272")
-attendee = User.create(name: "Alex", image: "https://res.cloudinary.com/wagon/image/upload/v1/cache/41c0e9dcfa12f55daefaff6bf18d4b28.png", phone: "000000")
-Trip.create(title: "Batch #891 graduation party", location: "Moganshan Naked Castle", image: "https://cdn-assets.nakedretreats.cn/naked-castle/assets/image/home/banner1.jpg", start_date: "2022-08-20", end_date: "2022-08-27", description: "This is a graduation party for batch #891", status: "open", capacity: 20, user_id: 1)
-
-Booking.create(trip: Trip.last, user: attendee, approved: true)
-Booking.create(trip: Trip.last, user: User.last, approved: true)
+# admin = User.create(name: "John Doe", image: "https://res.cloudinary.com/wagon/image/upload/v1/cache/41c0e9dcfa12f55daefaff6bf18d4b28.png", phone: "15618653272")
+# attendee = User.create(name: "Alex", image: "https://res.cloudinary.com/wagon/image/upload/v1/cache/41c0e9dcfa12f55daefaff6bf18d4b28.png", phone: "000000")
+# Trip.create(title: "Batch #891 graduation party", location: "Moganshan Naked Castle", image: "https://cdn-assets.nakedretreats.cn/naked-castle/assets/image/home/banner1.jpg", start_date: "2022-08-20", end_date: "2022-08-27", description: "This is a graduation party for batch #891", status: "open", capacity: 20, user_id: 1
+# Booking.create(trip: Trip.last, user: attendee, approved: true)
+# Booking.create(trip: Trip.last, user: User.last, approved: true)
 
 
 trip_url="https://api.unsplash.com/search/photos?page=1&query=group+trip&client_id=Cu-bOxmHNpsY4DftpFskX6nkbRH6JUnUoR9QbYHN2-g"

@@ -74,3 +74,6 @@ group :test do
 end
 
 gem "faker"
+
+gem 'jwt'
+gem 'rest-client'

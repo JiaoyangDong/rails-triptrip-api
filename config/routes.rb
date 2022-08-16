@@ -12,9 +12,12 @@ Rails.application.routes.draw do
         # end
         # resources :bookings, only: [:create]
       # end
-      # post 'login', to: 'users#login', as: :login
+      post 'login', to: 'users#login', as: :login
       # get 'profile/:id', to: 'users#profile_page'
       # resources :bookings, only: [:show]
+
+      # get 'attendees/:id', to: 'users#attendee_page'
+
     end
 
   end
