@@ -77,3 +77,4 @@ gem "faker"
 
 gem 'jwt'
 gem 'rest-client'
+gem 'open-uri'
