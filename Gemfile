@@ -78,3 +78,5 @@ gem "faker"
 gem 'jwt'
 gem 'rest-client'
 gem 'open-uri'
+gem 'activestorage-aliyun'
+gem 'image_processing'
