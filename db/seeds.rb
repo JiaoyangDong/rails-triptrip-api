@@ -26,6 +26,7 @@ trips = JSON.parse(URI.open(trip_url).read)["results"].first(10)
 ## TRIP
 TITLE = ["Hiking in the mountains", "Yoga & Meditation Retreat", "Camping in the forest", "Memorable journey to the scenic sites", "Rascals on the road - Waterfalls", "Weekend getaway", "Countrywalk for the city dwellers", "Weekend in bamboo forest & reservoir", "Stand-up paddling in the lake", "Escape the city life - Mindful Retreat" ]
 CITY = ["Moganshan", "Anhui", "Anji", "Ningbo", "Chongming", "Moganshan", "Xianju", "Hangzhou", "Anji", "Moganshan"]
+STREET = %w[Yanping Wuding Luoshan Aomen]
 
 TAGS = %w[hiking oneday weekend petfriendly family relaxing adventure biking]
 
@@ -42,6 +43,7 @@ end
       user: user,
       title: TITLE.sample,
       location: CITY.sample,
+      address:  "#{(1..999).to_a.sample} Road #{STREET.sample}",
       # image: trips[n]["urls"]["small"],
       start_date: Faker::Date.between(from: 2.days.ago, to: '2022-09-03'),
       end_date: Faker::Date.between(from: '2022-09-05', to: '2022-09-07'),
