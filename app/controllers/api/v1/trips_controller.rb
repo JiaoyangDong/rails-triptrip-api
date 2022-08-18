@@ -17,4 +17,23 @@ class Api::V1::TripsController < Api::V1::BaseController
     @bookmark_id = @trip.bookmarks.find_by(user: @current_user).id unless @trip.bookmarks.find_by(user: @current_user).nil?
     # render json: {trip: @trip, is_booker: is_booker, is_saved: is_saved, bookmark_id: bookmark_id}
   end
+
+  def create
+    @trip = trip.new(trip_params)
+    @trip.user = @current_user
+    unless @trip.save
+      render_error
+    end
+  end
+
+  private
+
+  def trip_params
+    params.require(:trip).permit(:title, :location, :address, :image, :start_date, :end_date, :description, :status, :capacity)
+  end
+
+  def render_error
+    render json: { errors: @trip.errors.full_messages }, status: :unprocessable_entity
+  end
+
 end

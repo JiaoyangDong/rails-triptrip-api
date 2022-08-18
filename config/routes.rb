@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :trips, only: [:show, :index] do
+      resources :trips, only: [:show, :index, :create] do
         resources :bookmarks, only: [:create]
         resources :bookings, only: [:create]
+        member do
+          post 'upload'
+        end
       end
       resources :bookmarks, only: [:destroy]
 
