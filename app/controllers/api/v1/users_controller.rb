@@ -11,7 +11,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def admin_page
     @upcoming = @current_user.trips.where("status IN ('open', 'ongoing')")
     @past = @current_user.trips.where(status: "closed")
-    render json: {upcoming: @upcoming, past: @past}
+    # render json: {upcoming: @upcoming, past: @past}
   end
 
   def login
