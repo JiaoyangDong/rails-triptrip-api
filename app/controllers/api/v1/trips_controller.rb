@@ -19,7 +19,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   end
 
   def create
-    @trip = trip.new(trip_params)
+    @trip = Trip.new(trip_params)
     @trip.user = @current_user
     unless @trip.save
       render_error

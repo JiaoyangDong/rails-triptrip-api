@@ -1,4 +1,4 @@
-id =  44 # change to your own wechat user id
+id =  60 # change to your own wechat user id
 # 41 annie
 # 44 julian
 
@@ -13,22 +13,24 @@ TAGS = %w[Hiking One-day Weekend Pet-friendly Family Relaxing Adventure Biking]
 
 user = User.find(id)
 
-2.times do
+2.times do |n|
   %w[open ongoing].each_with_index do |status, i|
     if trip = Trip.create(
       user: user,
       title: TITLE.sample,
       location: CITY.sample,
       address:  "#{(1..999).to_a.sample} Road #{STREET.sample}",
-      image: trips[i]["urls"]["small"],
+      # image: trips[i]["urls"]["small"],
       start_date: Faker::Date.between(from: 2.days.ago, to: '2022-09-03'),
       end_date: Faker::Date.between(from: '2022-09-05', to: '2022-09-07'),
       description: Faker::Lorem.paragraph(sentence_count: 3),
       status: status,
       capacity: [8, 10, 15, 16, 20, 30].sample
     )
+      file = URI.open(trips[n]["urls"]["small"])
+      trip.image.attach(io: file, filename: "grouptrip#{n}.jpeg") #, content_type: 'image/png')
       trip.tags << Tag.all.sample(rand(1..3))
-      # trip.save
+      trip.save
       p "Added new trip for wechat user: #{trip.title}"
     end
   end

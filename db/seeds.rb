@@ -39,7 +39,7 @@ end
 10.times do |n|
   if user = User.create(name: Faker::GreekPhilosophers.name)
     p "Added new user: #{user.name}"
-    trip = Trip.new(
+    if trip = Trip.create(
       user: user,
       title: TITLE.sample,
       location: CITY.sample,
@@ -51,9 +51,9 @@ end
       status: %w[open ongoing closed].sample,
       capacity: [8, 10, 15, 16, 20, 30].sample
     )
-    file = URI.open(trips[n]["urls"]["small"])
-    trip.image.attach(io: file, filename: "grouptrip#{n}.jpeg") #, content_type: 'image/png')
-    if trip.save
+      file = URI.open(trips[n]["urls"]["small"])
+      trip.image.attach(io: file, filename: "grouptrip#{trip.id}.jpeg") #, content_type: 'image/png')
+      trip.save
       trip.tags << Tag.all.sample(rand(1..3))
       p "Added new trip: #{trip.title}"
     else
