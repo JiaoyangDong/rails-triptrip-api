@@ -26,6 +26,13 @@ class Api::V1::TripsController < Api::V1::BaseController
     end
   end
 
+  def upload
+    @trip =Trip.find(params[:id])
+    puts "params #{params}"
+    @trip.image.attach(params[:image])
+    render json: {msg: 'success'}
+  end
+
   private
 
   def trip_params
