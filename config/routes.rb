@@ -7,12 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :trips, only: [:show, :index] do
         resources :bookmarks, only: [:create]
-      # resources :pets, only: [:show, :index, :create, :update, :destroy] do
-        # member do
-        #   post 'upload'
-        # end
-        # resources :bookings, only: [:create]
-      # end
+        resources :bookings, only: [:create]
       end
       resources :bookmarks, only: [:destroy]
 
