@@ -2,7 +2,11 @@ class Api::V1::TripsController < Api::V1::BaseController
 
   def index
     taginfo = params[:tag]
-    @trips = Trip.joins(:tags).where(tags: { name: taginfo })
+    if taginfo.nil?
+      @trips = Trip.all
+    else
+      @trips = Trip.joins(:tags).where(tags: { name: taginfo })
+    end
     # if params["filter"].nil?
     #   @trips = Trip.all
     # end
