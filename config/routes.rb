@@ -16,6 +16,6 @@ Rails.application.routes.draw do
       post 'login', to: 'users#login', as: :login
       get 'attendees/:id', to: 'users#attendee_page'
       get 'admins/:id', to: 'users#admin_page'
-    en
+    end
   end
 end
