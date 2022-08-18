@@ -1,10 +1,15 @@
 class Api::V1::TripsController < Api::V1::BaseController
+
   def index
-    if params["filter"].nil?
+    taginfo = params[:tag]
+    if taginfo.nil?
       @trips = Trip.all
     else
+      @trips = Trip.joins(:tags).where(tags: { name: taginfo })
     end
-    p @trips.length
+    # if params["filter"].nil?
+    #   @trips = Trip.all
+    # end
     render json: @trips
   end
 

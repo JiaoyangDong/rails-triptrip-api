@@ -11,13 +11,11 @@ Rails.application.routes.draw do
       end
       resources :bookmarks, only: [:destroy]
 
+      # customer routes
+      get 'tags/:tag', to: 'trips#index'
       post 'login', to: 'users#login', as: :login
-      # get 'profile/:id', to: 'users#profile_page'
-      # resources :bookings, only: [:show]
-
       get 'attendees/:id', to: 'users#attendee_page'
       get 'admins/:id', to: 'users#admin_page'
-    end
-
+    en
   end
 end
