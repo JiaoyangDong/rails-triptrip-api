@@ -21,11 +21,11 @@ User.destroy_all
 
 
 trip_url="https://api.unsplash.com/search/photos?page=1&query=group+trip&client_id=Cu-bOxmHNpsY4DftpFskX6nkbRH6JUnUoR9QbYHN2-g"
-trips = JSON.parse(URI.open(trip_url).read)["results"].first(10)
+trips = JSON.parse(URI.open(trip_url).read)["results"].first(30)
 
 ## TRIP
-TITLE = ["Hiking in the mountains", "Yoga & Meditation Retreat", "Camping in the forest", "Memorable journey to the scenic sites", "Rascals on the road - Waterfalls", "Weekend getaway", "Countrywalk for the city dwellers", "Weekend in bamboo forest & reservoir", "Stand-up paddling in the lake", "Escape the city life - Mindful Retreat" ]
-CITY = ["Moganshan", "Anhui", "Anji", "Ningbo", "Chongming", "Moganshan", "Xianju", "Hangzhou", "Anji", "Moganshan"]
+TITLE = ["Hiking in the mountains", "Yoga & Meditation Retreat", "Camping in the forest", "Memorable journey to local scenic sites", "Rascals on the road - Waterfalls", "Weekend getaway", "Countrywalk for city dwellers", "Weekend in bamboo forest & reservoir", "Stand-up paddling in the lake", "Escape city life - Mindful Retreat" ]
+CITY = ["青浦区淀山湖风景区", "普陀山风景名胜区", "舟山桃花岛风景旅游区", "浦东新区前滩休闲公园(前滩大道北)", "崇明东平国家森林公园", "西湖风景名胜区", "西湖区杭州西溪国家湿地公园东区", "长风公园", "世博公园(北村)", "嵊泗列岛风景名胜区(马前岗隊道东)"]
 STREET = %w[Yanping Wuding Luoshan Aomen]
 
 TAGS = %w[hiking oneday weekend petfriendly family relaxing adventure biking]
