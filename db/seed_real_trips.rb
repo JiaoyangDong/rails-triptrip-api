@@ -29,7 +29,7 @@ Trip.create(
   capacity: 10
 )
 
-Trip.create(
+trip = Trip.create(
   user: user,
   title: 'Stand-up paddling near Shanghai',
   location: 'Dianshan Lake',
@@ -38,7 +38,11 @@ Trip.create(
   start_date: '2022-08-13',
   end_date: '2022-08-13',
   description: "Dianshan lake is the premier paddling charter around Shanghai. On this trip you will have unique paddling adventure and include complementary lunch"
-  tags: ['petfriendly', 'family', 'adventure'],
+
   status: 'closed',
   capacity: 12
 )
+
+['petfriendly', 'family', 'adventure'].each do |tag|
+  trip.tags << Tag.find(name: tag)
+end
