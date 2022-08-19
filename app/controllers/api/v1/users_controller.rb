@@ -5,13 +5,13 @@ class Api::V1::UsersController < Api::V1::BaseController
     @upcoming = @current_user.booked_trips.where("status IN ('open', 'ongoing')")
     @past = @current_user.booked_trips.where(status: "closed")
     @bookmarks = @current_user.saved_trips
-    render json: {upcoming: @upcoming, past: @past, bookmarks: @bookmarks}
+    # render json: {upcoming: @upcoming, past: @past, bookmarks: @bookmarks}
   end
 
   def admin_page
     @upcoming = @current_user.trips.where("status IN ('open', 'ongoing')")
     @past = @current_user.trips.where(status: "closed")
-    render json: {upcoming: @upcoming, past: @past}
+    # render json: {upcoming: @upcoming, past: @past}
   end
 
   def login
