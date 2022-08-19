@@ -19,8 +19,25 @@ class Api::V1::TripsController < Api::V1::BaseController
   end
 
   def create
+    p "====== params ======"
+    p params
+
+    clean_tags = []
+    # debugger
+    params[:trip][:tags].each do |tag|
+      if tag[:active] == true
+        p tag[:name]
+        clean_tags << tag[:name]
+        # @trip.tags << Tag.find_by(name: tag)
+      end
+    end
+
     @trip = Trip.new(trip_params)
     @trip.user = @current_user
+    clean_tags.each do |tag|
+      @trip.tags << Tag.find_by(name: tag)
+    end
+
     unless @trip.save
       render_error
     end
@@ -36,7 +53,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :location, :address, :image, :start_date, :end_date, :description, :status, :capacity)
+    params.require(:trip).permit(:title, :location, :address, :image, :start_date, :end_date, :description, :status, :capacity, :tags)
   end
 
   def render_error

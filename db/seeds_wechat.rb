@@ -1,6 +1,7 @@
-id =  60 # change to your own wechat user id
-# 41 annie
-# 44 julian
+id = 60 # change to your own wechat user id
+# 70 zora 79 local
+# 71 annie
+# 60 julian
 
 # Seed your own wechat user
 trip_url="https://api.unsplash.com/search/photos?page=1&query=group+trip&client_id=Cu-bOxmHNpsY4DftpFskX6nkbRH6JUnUoR9QbYHN2-g"
@@ -10,9 +11,9 @@ CITY = ["Moganshan", "Anhui", "Anji", "Ningbo", "Chongming", "Moganshan", "Xianj
 STREET = %w[Yanping Wuding Luoshan Aomen]
 TAGS = %w[Hiking One-day Weekend Pet-friendly Family Relaxing Adventure Biking]
 
-
 user = User.find(id)
 
+# Admin
 2.times do |n|
   %w[open ongoing].each_with_index do |status, i|
     if trip = Trip.create(
@@ -36,14 +37,14 @@ user = User.find(id)
   end
 end
 
-
+# Attenddee
 5.times do
   # booking
-  if b = Booking.create(user: user, trip: Trip.all.sample)
-    p "add new booking."
-  else
-    p "fail to add new booking"
-  end
+  # if b = Booking.create(user: user, trip: Trip.all.where(status: ongoing).sample)
+  #   p "add new booking."
+  # else
+  #   p "fail to add new booking"
+  # end
   # bookmark
   User.all.each do |user|
     if b = Bookmark.create(user: user, trip: Trip.all.sample)

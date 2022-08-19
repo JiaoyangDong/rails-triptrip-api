@@ -8,4 +8,8 @@ class Trip < ApplicationRecord
   has_many :bookmarks
 
   has_one_attached :image
+  # validates :start_date < :end_date
+  # validates :start_date > Date.today
+  validates :start_date, presence: true
+  validates :end_date, presence: true
 end
