@@ -12,12 +12,16 @@ Rails.application.routes.draw do
       end
       resources :bookmarks, only: [:destroy]
       resources :bookings, only: [:destroy]
-
-      # customer routes
-      get 'tags/:tag', to: 'trips#index'
+      resources :users, only: [:update] do
+        member do
+          post 'upload'
+        end
+      end
       post 'login', to: 'users#login', as: :login
       get 'attendees/:id', to: 'users#attendee_page'
       get 'admins/:id', to: 'users#admin_page'
+      # customer routes
+      get 'tags/:tag', to: 'trips#index'
     end
   end
 end

@@ -37,7 +37,7 @@ trip = Trip.create(
   image: "https://images.unsplash.com/photo-1530055934217-67ff81dff696?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80",
   start_date: '2022-08-13',
   end_date: '2022-08-13',
-  description: "Dianshan lake is the premier paddling charter around Shanghai. On this trip you will have unique paddling adventure and include complementary lunch"
+  description: "Dianshan lake is the premier paddling charter around Shanghai. On this trip you will have unique paddling adventure and include complementary lunch",
 
   status: 'closed',
   capacity: 12

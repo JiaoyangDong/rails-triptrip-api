@@ -25,19 +25,36 @@ class Api::V1::UsersController < Api::V1::BaseController
     response = JSON.parse(response.body)
     open_id = response["openid"]
 
-    user =  User.find_or_create_by(open_id: open_id)
-
-    payload = {user_id: user.id}
+    @user = User.find_or_create_by(open_id: open_id)
+    payload = {user_id: @user.id}
     token = jwt_encode(payload)
-    # 4.2 - Render the response for the front-end
-    render json: {
-      headers: { "X-USER-TOKEN" => token },
-      user: user
-    }
+    @headers = { "X-USER-TOKEN" => token }
+    # render json: {
+    #   headers: { "X-USER-TOKEN" => token },
+    #   user: user
+    # }
 
   end
 
+  def update
+    user = @current_user
+    # user.name = params[:user][:name]
+    if user.update(user_params)
+      render json: { msg: "update user profile success" }
+    else
+      render_error
+    end
+  end
+
   private
+
+  def user_params
+    params.require(:user).permit(:name, :image)
+  end
+
+  def render_error
+    render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+  end
 
   def jwt_encode(payload) # generate JWT
     payload[:exp] = 7.days.from_now.to_i # set expiration date to 7 days from now

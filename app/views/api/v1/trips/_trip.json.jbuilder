@@ -10,4 +10,5 @@ else
 end
 
 tag_array = trip.tags.map { |tag| tag.name }
+# tag_array = trip.tags.map { |tag| { name: tag.name,show: tag.show } }
 json.tags tag_array

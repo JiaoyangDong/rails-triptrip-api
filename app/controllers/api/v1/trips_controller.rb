@@ -58,7 +58,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   end
 
   def upload
-    @trip =Trip.find(params[:id])
+    @trip = Trip.find(params[:id])
     puts "params #{params}"
     @trip.image.attach(params[:image])
     render json: {msg: 'Image upload success!'}
