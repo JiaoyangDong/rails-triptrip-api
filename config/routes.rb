@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resources :bookings, only: [:create]
         # resources :questions
         post 'survey', to: 'survey#create'
+        get 'survey', to: 'survey#show'
         member do
           post 'upload'
         end
