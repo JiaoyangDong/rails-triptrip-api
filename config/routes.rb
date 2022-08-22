@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :trips, only: [:show, :index, :create, :update, :destroy] do
         resources :bookmarks, only: [:create]
         resources :bookings, only: [:create]
+        # resources :questions
+        post 'survey', to: 'survey#create'
         member do
           post 'upload'
         end
