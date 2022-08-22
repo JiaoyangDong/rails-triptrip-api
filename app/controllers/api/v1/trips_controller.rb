@@ -19,11 +19,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   end
 
   def create
-    p "====== params ======"
-    p params
-
     clean_tags = []
-    # debugger
     params[:trip][:tags].each do |tag|
       if tag[:active] == true
         p tag[:name]
@@ -43,11 +39,29 @@ class Api::V1::TripsController < Api::V1::BaseController
     end
   end
 
+  def update
+    @trip = Trip.find(params[:id])
+    if @trip.update(trip_params)
+      # render json: @trip
+      # render :show
+      render json: { msg: 'Updated!' }
+
+    else
+      render_error
+    end
+  end
+
+  def destroy
+    @trip = Trip.find(params[:id])
+    @trip.destroy
+    render json: { msg: 'Deleted' }
+  end
+
   def upload
     @trip =Trip.find(params[:id])
     puts "params #{params}"
     @trip.image.attach(params[:image])
-    render json: {msg: 'success'}
+    render json: {msg: 'Image upload success!'}
   end
 
   private

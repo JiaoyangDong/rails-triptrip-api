@@ -7,4 +7,10 @@ class Api::V1::BookingsController <  Api::V1::BaseController
       render json: @booking.errors, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    render json: { msg: 'Deleted' }
+  end
 end
