@@ -67,7 +67,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :location, :address, :image, :start_date, :end_date, :description, :status, :capacity, :tags)
+    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :image, :start_date, :end_date, :description, :status, :capacity, :tags)
   end
 
   def render_error
