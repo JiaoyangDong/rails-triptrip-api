@@ -9,6 +9,8 @@ Rails.application.routes.draw do
         # resources :questions
         post 'survey', to: 'survey#create'
         get 'survey', to: 'survey#show'
+        post 'answer', to: 'survey#answer'
+        get 'stats', to: 'survey#stats'
         member do
           post 'upload'
         end
