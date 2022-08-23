@@ -15,6 +15,7 @@ class Api::V1::TripsController < Api::V1::BaseController
     @is_booker = @trip.bookings.find_by(user: @current_user).nil? ? false : true
     @is_saved = @trip.bookmarks.find_by(user: @current_user).nil? ? false : true
     @bookmark_id = @trip.bookmarks.find_by(user: @current_user).id unless @trip.bookmarks.find_by(user: @current_user).nil?
+    @has_survey = @trip.questions.nil? ? false : true
     # render json: {trip: @trip, is_booker: is_booker, is_saved: is_saved, bookmark_id: bookmark_id}
 
 
