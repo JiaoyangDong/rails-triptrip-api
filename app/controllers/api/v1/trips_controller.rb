@@ -16,22 +16,18 @@ class Api::V1::TripsController < Api::V1::BaseController
     @is_saved = @trip.bookmarks.find_by(user: @current_user).nil? ? false : true
     @bookmark_id = @trip.bookmarks.find_by(user: @current_user).id unless @trip.bookmarks.find_by(user: @current_user).nil?
     # render json: {trip: @trip, is_booker: is_booker, is_saved: is_saved, bookmark_id: bookmark_id}
+
+
   end
 
   def create
-    clean_tags = []
-    params[:trip][:tags].each do |tag|
-      if tag[:active] == true
-        p tag[:name]
-        clean_tags << tag[:name]
-        # @trip.tags << Tag.find_by(name: tag)
-      end
-    end
-
     @trip = Trip.new(trip_params)
     @trip.user = @current_user
-    clean_tags.each do |tag|
-      @trip.tags << Tag.find_by(name: tag)
+
+    params[:trip][:tags].each do |tag|
+      tag_to_add = Tag.find(tag)
+      tag_to_add.update(active: true)
+      @trip.tags << tag_to_add
     end
 
     unless @trip.save

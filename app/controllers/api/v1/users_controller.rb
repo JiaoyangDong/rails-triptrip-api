@@ -33,6 +33,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     payload = {user_id: @user.id}
     token = jwt_encode(payload)
     @headers = { "X-USER-TOKEN" => token }
+    @tags = Tag.all
     # render json: {
     #   headers: { "X-USER-TOKEN" => token },
     #   user: user
