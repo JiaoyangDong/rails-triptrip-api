@@ -2,15 +2,19 @@ class Api::V1::UsersController < Api::V1::BaseController
   skip_before_action :verify_request, only: [:login]
 
   def attendee_page
-    @upcoming = @current_user.booked_trips.where("status IN ('open', 'ongoing')")
-    @past = @current_user.booked_trips.where(status: "closed")
+    # @upcoming = @current_user.booked_trips.where("status IN ('open', 'ongoing')")
+    # @past = @current_user.booked_trips.where(status: "closed")
+    @upcoming = @current_user.booked_trips.where("end_date >= CURRENT_DATE")
+    @past = @current_user.booked_trips.where("end_date < CURRENT_DATE")
     @bookmarks = @current_user.saved_trips
     # render json: {upcoming: @upcoming, past: @past, bookmarks: @bookmarks}
   end
 
   def admin_page
-    @upcoming = @current_user.trips.where("status IN ('open', 'ongoing')")
-    @past = @current_user.trips.where(status: "closed")
+    # @upcoming = @current_user.trips.where("status IN ('open', 'ongoing')")
+    # @past = @current_user.trips.where(status: "closed")
+    @upcoming = @current_user.trips.where("end_date >= CURRENT_DATE")
+    @past = @current_user.trips.where("end_date < CURRENT_DATE")
     # render json: {upcoming: @upcoming, past: @past}
   end
 
