@@ -3,7 +3,7 @@
   "questions": [
     {
       "content": "What room type do you want to live in?",
-      "question_type": "single-choice",
+      "question_type": "radio",
       "options": [
         "Private Room",
         "Shared Room",
@@ -12,7 +12,7 @@
     },
     {
       "content": "Dietary requirements?",
-      "question_type": "single-choice",
+      "question_type": "radio",
       "options": [
         "Vegetarian",
         "Vegan",
@@ -21,7 +21,7 @@
     },
     {
       "content": "Do you need pick up?",
-      "question_type": "single-choice",
+      "question_type": "radio",
       "options": [
         "Yes",
         "No"

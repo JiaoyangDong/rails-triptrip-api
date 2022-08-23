@@ -1,0 +1,40 @@
+{
+  "questions": [
+    {
+      "id": 10,
+      "contenet": "Room type?",
+      "answers": [
+        {
+          "booking_id": 70,
+          "content": "Private room"
+        },
+        {
+          "booking_id": 81,
+          "content": "Shared room"
+        },
+        {
+          "booking_id": 89,
+          "content": "No preference"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "contenet": "Dietary  requirement?",
+      "answers": [
+        {
+          "booking_id": 70,
+          "content": "Vegan"
+        },
+        {
+          "booking_id": 81,
+          "content": "Vegan"
+        },
+        {
+          "booking_id": 89,
+          "content": "No preference"
+        }
+      ]
+    }
+  ]
+}

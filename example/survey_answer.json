@@ -1,0 +1,17 @@
+{
+  "booking_id": 15,
+  "questions": [
+    {
+      "id": 10,
+      "answer": "Private Room"
+    },
+    {
+      "id": 11,
+      "answer": "Vegetarian"
+    },
+    {
+      "id": 12,
+      "answer": "Yes"
+    }
+  ]
+}
