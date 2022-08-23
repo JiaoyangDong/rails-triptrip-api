@@ -23,7 +23,6 @@ class Api::V1::TripsController < Api::V1::BaseController
   def create
     @trip = Trip.new(trip_params)
     @trip.user = @current_user
-
     params[:trip][:tags].each do |tag|
       tag_to_add = Tag.find(tag)
       tag_to_add.update(active: true)
