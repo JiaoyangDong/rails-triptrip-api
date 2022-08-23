@@ -1,0 +1,34 @@
+{
+  "trip_id": 15,
+  "questions": [
+    {
+      "id": 10,
+      "content": "What room type do you want to live in?",
+      "question_type": "single-choice",
+      "options": [
+        "Private Room",
+        "Shared Room",
+        "no preference"
+      ]
+    },
+    {
+      "id": 11,
+      "content": "Dietary requirements?",
+      "question_type": "single-choice",
+      "options": [
+        "Vegetarian",
+        "Vegan",
+        "None"
+      ]
+    },
+    {
+      "id": 12,
+      "content": "Do you need pick up?",
+      "question_type": "single-choice",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    }
+  ]
+}
