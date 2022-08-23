@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_22_123248) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_23_050437) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,6 +92,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_22_123248) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "show"
+    t.boolean "active", default: false
+    t.string "icon"
+    t.string "style"
+    t.boolean "indexactive", default: false
   end
 
   create_table "trip_tags", force: :cascade do |t|

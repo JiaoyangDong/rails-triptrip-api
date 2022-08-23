@@ -7,6 +7,12 @@ json.user do
   json.name @user.name
   json.image @user.image
 end
+
+json.tags do
+  json.array! @tags do |tag|
+    json.extract! tag, :id, :name, :show, :active, :style, :icon, :indexactive
+  end
+end
 #   user, :id, :name, :image
 #   json.partial! 'api/v1/users/user', { user: @user }
 # end
