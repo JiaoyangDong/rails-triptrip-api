@@ -1,3 +1,10 @@
+json.trip do
+  json.partial! 'api/v1/trips/trip', { trip: @trip }
+  json.partial! 'api/v1/trips/tags', { tags: @trip_tags}
+end
+json.has_survey !@trip.questions.empty?
+
+
 json.questions @trip.questions do |question|
   json.id question.id
   json.content question.content

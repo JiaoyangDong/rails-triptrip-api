@@ -33,6 +33,13 @@ class Api::V1::SurveyController < Api::V1::BaseController
 
   def stats
     @trip = Trip.find(params[:trip_id])
+
+    all_tags = Tag.all
+    @trip_tags = []
+    all_tags.each do |tag|
+      tag.active = true unless @trip.tags.find_by(id: tag.id).nil?
+      @trip_tags << tag
+    end
   end
 
   private
