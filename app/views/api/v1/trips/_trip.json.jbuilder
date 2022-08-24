@@ -9,6 +9,6 @@ else
   json.end_date trip.end_date&.strftime('%a, %b %d %Y')
 end
 
-tag_array = trip.tags.map { |tag| tag.name }
-# tag_array = trip.tags.map { |tag| { name: tag.name,show: tag.show } }
-json.tags tag_array
+# tag_array = trip.tags.map { |tag| tag.name }
+# # tag_array = trip.tags.map { |tag| { name: tag.name,show: tag.show } }
+# json.tags tag_array
