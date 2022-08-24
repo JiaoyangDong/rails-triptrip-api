@@ -2,7 +2,7 @@ class Api::V1::TripsController < Api::V1::BaseController
 
   def index
     taginfo = params[:tag]
-    if taginfo.nil?
+    if taginfo.empty?
       @trips = Trip.all
     else
       @trips = Trip.joins(:tags).where(tags: { name: taginfo })
@@ -16,6 +16,13 @@ class Api::V1::TripsController < Api::V1::BaseController
     @is_saved = @trip.bookmarks.find_by(user: @current_user).nil? ? false : true
     @bookmark_id = @trip.bookmarks.find_by(user: @current_user).id unless @trip.bookmarks.find_by(user: @current_user).nil?
     # render json: {trip: @trip, is_booker: is_booker, is_saved: is_saved, bookmark_id: bookmark_id}
+    all_tags = Tag.all
+    @trip_tags = []
+    all_tags.each do |tag|
+      tag.active = true unless @trip.tags.find_by(id: tag.id).nil?
+      @trip_tags << tag
+    end
+
 
 
   end
@@ -24,9 +31,8 @@ class Api::V1::TripsController < Api::V1::BaseController
     @trip = Trip.new(trip_params)
     @trip.user = @current_user
 
-    params[:trip][:tags].each do |tag|
+    params[:tags][:tags].each do |tag|
       tag_to_add = Tag.find(tag)
-      tag_to_add.update(active: true)
       @trip.tags << tag_to_add
     end
 
@@ -37,6 +43,13 @@ class Api::V1::TripsController < Api::V1::BaseController
 
   def update
     @trip = Trip.find(params[:id])
+
+    @trip.tags = []
+    params[:tags][:tags].each do |tag|
+      tag_to_add = Tag.find(tag)
+      @trip.tags << tag_to_add
+    end
+
     if @trip.update(trip_params)
       # render json: @trip
       # render :show
@@ -63,7 +76,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :image, :start_date, :end_date, :description, :status, :capacity, :tags)
+    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :image, :start_date, :end_date, :description, :status, :capacity)
   end
 
   def render_error

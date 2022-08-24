@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       get 'attendees/:id', to: 'users#attendee_page'
       get 'admins/:id', to: 'users#admin_page'
       # customer routes
-      get 'tags/:tag', to: 'trips#index'
+      # get 'tags/:tag', to: 'trips#index'
     end
   end
 end
