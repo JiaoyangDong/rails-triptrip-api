@@ -1,10 +1,72 @@
+#############################################
+# reset
+#############################################
+
+# Option.destroy_all
 # Answer.destroy_all
+# TripTag.destroy_all
+# Tag.destroy_all
 # Question.destroy_all
 # Booking.destroy_all
 # Bookmark.destroy_all
 # Trip.destroy_all
 # User.destroy_all
 
+# Tag.create([
+#   {
+#     name: "oneday",
+#     show: "Day trips",
+#     icon: "/images/tags/oneday.png",
+#     style: ""
+#   },
+#   {
+#     name: "weekend",
+#     show: "Weekend",
+#     icon: "/images/tags/weekend.png",
+#     style: ""
+#   },
+#   {
+#     name: "petfriendly",
+#     show: "Pet-friendly",
+#     icon: "/images/tags/petfriendly.png",
+#     style: ""
+#   },
+#   {
+#     name: "hiking",
+#     show: "Hiking",
+#     icon: "/images/tags/hiking.png",
+#     style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
+#   },
+#   {
+#     name: "relaxing",
+#     show: "Relaxing",
+#     icon: "/images/tags/relaxing.png",
+#     style: "height:65rpx;width:65rpx;margin-top:17rpx;"
+#   },
+#   {
+#     name: "family",
+#     show: "Family",
+#     icon: "/images/tags/family.png",
+#     style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
+#   },
+#   {
+#     name: "adventure",
+#     show: "Adventure",
+#     icon: "/images/tags/adventure.png",
+#     style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
+#   },
+#   {
+#     name: "biking",
+#     show: "Biking",
+#     icon: "/images/tags/biking.png",
+#     style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
+#   }
+# ])
+
+
+#############################################
+# old faker
+#############################################
 
 # trip_url="https://api.unsplash.com/search/photos?page=1&query=group+trip&client_id=Cu-bOxmHNpsY4DftpFskX6nkbRH6JUnUoR9QbYHN2-g"
 # trips = JSON.parse(URI.open(trip_url).read)["results"].first(30)
@@ -14,57 +76,6 @@
 # STREET = %w[Yanping Wuding Luoshan Aomen]
 
 # TAGS = %w[hiking oneday weekend petfriendly family relaxing adventure biking]
-
-Tag.create([
-      {
-        name: "oneday",
-        show: "Day trips",
-        icon: "/images/tags/oneday.png",
-        style: ""
-      },
-      {
-        name: "weekend",
-        show: "Weekend",
-        icon: "/images/tags/weekend.png",
-        style: ""
-      },
-      {
-        name: "petfriendly",
-        show: "Pet-friendly",
-        icon: "/images/tags/petfriendly.png",
-        style: ""
-      },
-      {
-        name: "hiking",
-        show: "Hiking",
-        icon: "/images/tags/hiking.png",
-        style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
-      },
-      {
-        name: "relaxing",
-        show: "Relaxing",
-        icon: "/images/tags/relaxing.png",
-        style: "height:65rpx;width:65rpx;margin-top:17rpx;"
-      },
-      {
-        name: "family",
-        show: "Family",
-        icon: "/images/tags/family.png",
-        style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
-      },
-      {
-        name: "adventure",
-        show: "Adventure",
-        icon: "/images/tags/adventure.png",
-        style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
-      },
-      {
-        name: "biking",
-        show: "Biking",
-        icon: "/images/tags/biking.png",
-        style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
-      }
-])
 
 # 10.times do |n|
 #   if user = User.create(name: Faker::GreekPhilosophers.name)
@@ -111,10 +122,12 @@ Tag.create([
 
 
 
+############################################
+#  SEED SURVEY
+#############################################
 
-# #  SEED SURVEY
-# trip_id= 140
-# wechat_id=79
+# trip_id= 96
+# wechat_id=70
 # # Seed survey questions
 # trip = Trip.find(trip_id)
 # trip.questions.destroy_all
@@ -126,6 +139,8 @@ Tag.create([
 # A1= ["Private Room","Shared Room","no preference"]
 # A2= ["Vegetarian","Vegan","None"]
 # A3= ["Yes","No"]
+
+# # options
 
 # # seed survey attendees
 # users = User.all.sample(5)
