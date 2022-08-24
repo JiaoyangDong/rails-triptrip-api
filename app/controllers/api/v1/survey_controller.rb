@@ -3,7 +3,7 @@ class Api::V1::SurveyController < Api::V1::BaseController
     p "from survey create ==========================="
     trip = Trip.find(params[:trip_id])
     # reset all survey questions
-    Trip.last.questions.destroy_all
+    trip.questions.destroy_all
     # create question
     params[:questions].each do |q|
       question = Question.new(content: q[:content], question_type: q[:question_type])
