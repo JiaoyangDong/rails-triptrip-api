@@ -29,6 +29,11 @@ class Api::V1::TripsController < Api::V1::BaseController
 
   end
 
+  def edit
+    @trip = Pet.find(params[:id])
+    render json: @trip
+  end
+
   def create
     @trip = Trip.new(trip_params)
     @trip.user = @current_user
@@ -57,6 +62,7 @@ class Api::V1::TripsController < Api::V1::BaseController
       render json: { msg: 'Updated!' }
 
     else
+      p @trip.errors
       render_error
     end
   end
@@ -77,7 +83,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :image, :start_date, :end_date, :description, :status, :capacity)
+    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :start_date, :end_date, :description, :status, :capacity)
   end
 
   def render_error
