@@ -1,6 +1,7 @@
 # json.trip_id @trip.id
 json.question
 json.array! @questions do |question|
+  json.id question.id
   json.content question.content
   json.question_type question.question_type
   option_array = question.options.map { |option| option.name }

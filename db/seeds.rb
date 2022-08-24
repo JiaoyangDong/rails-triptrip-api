@@ -108,3 +108,32 @@ Tag.create([
 #     p "fail to add new bookmark"
 #   end
 # end
+
+
+
+
+# #  SEED SURVEY
+# trip_id= 140
+# wechat_id=79
+# # Seed survey questions
+# trip = Trip.find(trip_id)
+# trip.questions.destroy_all
+# q1 =  Question.create(content: "What room type do you want to live in?")
+# q2 =  Question.create(content: "Dietary requirements?")
+# q3 =  Question.create(content: "Do you need pick up?")
+# trip.questions = [q1,q2,q3]
+
+# A1= ["Private Room","Shared Room","no preference"]
+# A2= ["Vegetarian","Vegan","None"]
+# A3= ["Yes","No"]
+
+# # seed survey attendees
+# users = User.all.sample(5)
+# users << User.find(wechat_id)
+# users.each do |user|
+#   booking = Booking.create(user: user, trip: trip)
+#   # seed survey answers
+#   Answer.create(question: q1, booking: booking, content: A1.sample)
+#   Answer.create(question: q2, booking: booking, content: A2.sample)
+#   Answer.create(question: q3, booking: booking, content: A3.sample)
+# end
