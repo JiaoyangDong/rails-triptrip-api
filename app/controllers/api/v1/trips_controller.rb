@@ -29,10 +29,10 @@ class Api::V1::TripsController < Api::V1::BaseController
 
   end
 
-  def edit
-    @trip = Pet.find(params[:id])
-    render json: @trip
-  end
+  # def edit
+  #   @trip = Pet.find(params[:id])
+  #   render json: @trip
+  # end
 
   def create
     @trip = Trip.new(trip_params)
