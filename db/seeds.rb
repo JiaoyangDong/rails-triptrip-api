@@ -125,30 +125,31 @@
 ############################################
 #  SEED SURVEY
 #############################################
+trip_id= 167
 
-# trip_id= 96
-# wechat_id=70
-# # Seed survey questions
-# trip = Trip.find(trip_id)
+# Seed survey questions
+trip = Trip.find(trip_id)
+# trip.questions
 # trip.questions.destroy_all
 # q1 =  Question.create(content: "What room type do you want to live in?")
 # q2 =  Question.create(content: "Dietary requirements?")
 # q3 =  Question.create(content: "Do you need pick up?")
 # trip.questions = [q1,q2,q3]
-
 # A1= ["Private Room","Shared Room","no preference"]
 # A2= ["Vegetarian","Vegan","None"]
 # A3= ["Yes","No"]
+# options
+# Option.create(name: A1[0], question: q1)
+# Option.create(name: A1[1], question: q1)
+# Option.create(name: A1[2], question: q1)
 
-# # options
-
-# # seed survey attendees
-# users = User.all.sample(5)
-# users << User.find(wechat_id)
-# users.each do |user|
-#   booking = Booking.create(user: user, trip: trip)
-#   # seed survey answers
-#   Answer.create(question: q1, booking: booking, content: A1.sample)
-#   Answer.create(question: q2, booking: booking, content: A2.sample)
-#   Answer.create(question: q3, booking: booking, content: A3.sample)
-# end
+# seed survey attendees
+users = User.all.sample(3)
+users.each do |user|
+  # booking = Booking.create(user: user, trip: trip)
+  booking = Booking.find_by(user: user, trip: trip)
+  # seed survey answers
+  trip.questions.each do |q|
+    Answer.create(question: q, booking: booking, content: q.options.sample.name)
+  end
+end
