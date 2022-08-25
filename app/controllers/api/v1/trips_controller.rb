@@ -17,6 +17,7 @@ class Api::V1::TripsController < Api::V1::BaseController
     @bookmark_id = @trip.bookmarks.find_by(user: @current_user).id unless @trip.bookmarks.find_by(user: @current_user).nil?
     @booking_id = @trip.bookings.find_by(user: @current_user).id unless @trip.bookings.find_by(user: @current_user).nil?
     @has_survey = !@trip.questions.empty?
+    @has_answers = !@trip.bookings.find_by(user: @current_user).answers.empty? unless @trip.bookings.find_by(user: @current_user).nil?
     # render json: {trip: @trip, is_booker: is_booker, is_saved: is_saved, bookmark_id: bookmark_id}
     all_tags = Tag.all
     @trip_tags = []
