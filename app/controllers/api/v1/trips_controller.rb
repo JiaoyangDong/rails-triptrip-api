@@ -51,7 +51,7 @@ class Api::V1::TripsController < Api::V1::BaseController
     @trip = Trip.find(params[:id])
 
     @trip.tags = []
-    params[:tags][:tags].each do |tag|
+    params[:tags].each do |tag|
       tag_to_add = Tag.find(tag)
       @trip.tags << tag_to_add
     end
