@@ -143,6 +143,7 @@ trip = Trip.find(trip_id)
 # Option.create(name: A1[1], question: q1)
 # Option.create(name: A1[2], question: q1)
 
+
 # seed survey attendees
 users = User.all.sample(3)
 users.each do |user|

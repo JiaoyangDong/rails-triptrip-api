@@ -9,3 +9,4 @@ json.is_saved @is_saved
 json.bookmark_id @bookmark_id
 json.booking_id @booking_id
 json.has_survey @has_survey
+json.has_answers @has_answers
