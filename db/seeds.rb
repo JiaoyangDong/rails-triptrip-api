@@ -1,10 +1,72 @@
+#############################################
+# reset
+#############################################
+
+# Option.destroy_all
 # Answer.destroy_all
+# TripTag.destroy_all
+# Tag.destroy_all
 # Question.destroy_all
 # Booking.destroy_all
 # Bookmark.destroy_all
 # Trip.destroy_all
 # User.destroy_all
 
+# Tag.create([
+#   {
+#     name: "oneday",
+#     show: "Day trips",
+#     icon: "/images/tags/oneday.png",
+#     style: ""
+#   },
+#   {
+#     name: "weekend",
+#     show: "Weekend",
+#     icon: "/images/tags/weekend.png",
+#     style: ""
+#   },
+#   {
+#     name: "petfriendly",
+#     show: "Pet-friendly",
+#     icon: "/images/tags/petfriendly.png",
+#     style: ""
+#   },
+#   {
+#     name: "hiking",
+#     show: "Hiking",
+#     icon: "/images/tags/hiking.png",
+#     style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
+#   },
+#   {
+#     name: "relaxing",
+#     show: "Relaxing",
+#     icon: "/images/tags/relaxing.png",
+#     style: "height:65rpx;width:65rpx;margin-top:17rpx;"
+#   },
+#   {
+#     name: "family",
+#     show: "Family",
+#     icon: "/images/tags/family.png",
+#     style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
+#   },
+#   {
+#     name: "adventure",
+#     show: "Adventure",
+#     icon: "/images/tags/adventure.png",
+#     style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
+#   },
+#   {
+#     name: "biking",
+#     show: "Biking",
+#     icon: "/images/tags/biking.png",
+#     style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
+#   }
+# ])
+
+
+#############################################
+# old faker
+#############################################
 
 # trip_url="https://api.unsplash.com/search/photos?page=1&query=group+trip&client_id=Cu-bOxmHNpsY4DftpFskX6nkbRH6JUnUoR9QbYHN2-g"
 # trips = JSON.parse(URI.open(trip_url).read)["results"].first(30)
@@ -14,57 +76,6 @@
 # STREET = %w[Yanping Wuding Luoshan Aomen]
 
 # TAGS = %w[hiking oneday weekend petfriendly family relaxing adventure biking]
-
-Tag.create([
-      {
-        name: "oneday",
-        show: "Day trips",
-        icon: "/images/tags/oneday.png",
-        style: ""
-      },
-      {
-        name: "weekend",
-        show: "Weekend",
-        icon: "/images/tags/weekend.png",
-        style: ""
-      },
-      {
-        name: "petfriendly",
-        show: "Pet-friendly",
-        icon: "/images/tags/petfriendly.png",
-        style: ""
-      },
-      {
-        name: "hiking",
-        show: "Hiking",
-        icon: "/images/tags/hiking.png",
-        style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
-      },
-      {
-        name: "relaxing",
-        show: "Relaxing",
-        icon: "/images/tags/relaxing.png",
-        style: "height:65rpx;width:65rpx;margin-top:17rpx;"
-      },
-      {
-        name: "family",
-        show: "Family",
-        icon: "/images/tags/family.png",
-        style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
-      },
-      {
-        name: "adventure",
-        show: "Adventure",
-        icon: "/images/tags/adventure.png",
-        style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
-      },
-      {
-        name: "biking",
-        show: "Biking",
-        icon: "/images/tags/biking.png",
-        style: "height:70rpx;width:70rpx;margin-top: 11rpx;"
-      }
-])
 
 # 10.times do |n|
 #   if user = User.create(name: Faker::GreekPhilosophers.name)
@@ -111,29 +122,35 @@ Tag.create([
 
 
 
+############################################
+#  SEED SURVEY
+#############################################
+trip_id= 167
 
-# #  SEED SURVEY
-# trip_id= 140
-# wechat_id=79
-# # Seed survey questions
-# trip = Trip.find(trip_id)
+# Seed survey questions
+trip = Trip.find(trip_id)
+# trip.questions
 # trip.questions.destroy_all
 # q1 =  Question.create(content: "What room type do you want to live in?")
 # q2 =  Question.create(content: "Dietary requirements?")
 # q3 =  Question.create(content: "Do you need pick up?")
 # trip.questions = [q1,q2,q3]
-
 # A1= ["Private Room","Shared Room","no preference"]
 # A2= ["Vegetarian","Vegan","None"]
 # A3= ["Yes","No"]
+# options
+# Option.create(name: A1[0], question: q1)
+# Option.create(name: A1[1], question: q1)
+# Option.create(name: A1[2], question: q1)
 
-# # seed survey attendees
-# users = User.all.sample(5)
-# users << User.find(wechat_id)
-# users.each do |user|
-#   booking = Booking.create(user: user, trip: trip)
-#   # seed survey answers
-#   Answer.create(question: q1, booking: booking, content: A1.sample)
-#   Answer.create(question: q2, booking: booking, content: A2.sample)
-#   Answer.create(question: q3, booking: booking, content: A3.sample)
-# end
+
+# seed survey attendees
+users = User.all.sample(3)
+users.each do |user|
+  # booking = Booking.create(user: user, trip: trip)
+  booking = Booking.find_by(user: user, trip: trip)
+  # seed survey answers
+  trip.questions.each do |q|
+    Answer.create(question: q, booking: booking, content: q.options.sample.name)
+  end
+end

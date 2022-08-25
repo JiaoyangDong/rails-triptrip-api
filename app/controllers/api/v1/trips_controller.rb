@@ -3,9 +3,9 @@ class Api::V1::TripsController < Api::V1::BaseController
   def index
     taginfo = params[:tag]
     if taginfo.empty?
-      @trips = Trip.all
+      @trips = Trip.all.where('end_date >= CURRENT_DATE')
     else
-      @trips = Trip.joins(:tags).where(tags: { name: taginfo })
+      @trips = Trip.joins(:tags).where(tags: { name: taginfo }).where('end_date >= CURRENT_DATE')
     end
     # render json: @trips
   end
@@ -30,6 +30,11 @@ class Api::V1::TripsController < Api::V1::BaseController
 
   end
 
+  # def edit
+  #   @trip = Pet.find(params[:id])
+  #   render json: @trip
+  # end
+
   def create
     @trip = Trip.new(trip_params)
     @trip.user = @current_user
@@ -42,6 +47,11 @@ class Api::V1::TripsController < Api::V1::BaseController
       render_error
     end
   end
+
+  # def edit
+  #   @trip = Trip.find(params[:id])
+  #   render json: @trip
+  # end
 
   def update
     @trip = Trip.find(params[:id])
@@ -58,6 +68,7 @@ class Api::V1::TripsController < Api::V1::BaseController
       render json: { msg: 'Updated!' }
 
     else
+      p @trip.errors
       render_error
     end
   end
@@ -78,7 +89,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :image, :start_date, :end_date, :description, :status, :capacity)
+    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :start_date, :end_date, :description, :status, :capacity)
   end
 
   def render_error

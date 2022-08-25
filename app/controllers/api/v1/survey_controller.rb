@@ -26,7 +26,7 @@ class Api::V1::SurveyController < Api::V1::BaseController
     booking = Booking.find(params[:booking_id])
     params[:quesitons].each do |q|
       question = Qustion.find(q[:id])
-      answer = Answer.create(content: q[:content], question_id: question.id, booking_id: booking.id)
+      Answer.create(content: q[:answer], question_id: question.id, booking_id: booking.id)
     end
     render json: { msg: "answers created" }, status: :created
   end
