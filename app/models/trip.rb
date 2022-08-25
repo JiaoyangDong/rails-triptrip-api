@@ -12,6 +12,7 @@ class Trip < ApplicationRecord
   # validates :start_date > Date.today
   validates :start_date, presence: true
   validates :end_date, presence: true, date: { after_or_equal_to: :start_date, after: Proc.new { Time.now } }
+
   validates :title, presence: true
   validates :location, presence: true
   # validates :image, presence: true
