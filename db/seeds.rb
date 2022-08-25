@@ -125,24 +125,10 @@
 ############################################
 #  SEED SURVEY
 #############################################
-trip_id= 167
+trip_id= 159
 
 # Seed survey questions
 trip = Trip.find(trip_id)
-# trip.questions
-# trip.questions.destroy_all
-# q1 =  Question.create(content: "What room type do you want to live in?")
-# q2 =  Question.create(content: "Dietary requirements?")
-# q3 =  Question.create(content: "Do you need pick up?")
-# trip.questions = [q1,q2,q3]
-# A1= ["Private Room","Shared Room","no preference"]
-# A2= ["Vegetarian","Vegan","None"]
-# A3= ["Yes","No"]
-# options
-# Option.create(name: A1[0], question: q1)
-# Option.create(name: A1[1], question: q1)
-# Option.create(name: A1[2], question: q1)
-
 
 # seed survey attendees
 users = User.all.sample(3)

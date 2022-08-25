@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         get 'stats', to: 'survey#stats'
         member do
           post 'upload'
+          post 'toggle_public'
         end
       end
       resources :bookmarks, only: [:destroy]

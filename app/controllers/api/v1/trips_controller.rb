@@ -3,9 +3,9 @@ class Api::V1::TripsController < Api::V1::BaseController
   def index
     taginfo = params[:tag]
     if taginfo.empty?
-      @trips = Trip.all.where('end_date >= CURRENT_DATE')
+      @trips = Trip.all.where(public: true).where('end_date >= CURRENT_DATE')
     else
-      @trips = Trip.joins(:tags).where(tags: { name: taginfo }).where('end_date >= CURRENT_DATE')
+      @trips = Trip.joins(:tags).where(public: true).where(tags: { name: taginfo }).where('end_date >= CURRENT_DATE')
     end
     # render json: @trips
   end
@@ -25,8 +25,6 @@ class Api::V1::TripsController < Api::V1::BaseController
       tag.active = true unless @trip.tags.find_by(id: tag.id).nil?
       @trip_tags << tag
     end
-
-
 
   end
 
@@ -66,11 +64,18 @@ class Api::V1::TripsController < Api::V1::BaseController
       # render json: @trip
       # render :show
       render json: { msg: 'Updated!' }
-
     else
       p @trip.errors
       render_error
     end
+  end
+
+  def toggle_public
+    @trip = Trip.find(params[:id])
+    unless @trip.update(public: !@trip.public)
+      render_error
+    end
+    # debugger
   end
 
   def destroy
@@ -89,7 +94,7 @@ class Api::V1::TripsController < Api::V1::BaseController
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :start_date, :end_date, :description, :status, :capacity)
+    params.require(:trip).permit(:title, :location, :address, :longitude, :latitude, :start_date, :end_date, :description, :status, :capacity, :public)
   end
 
   def render_error
