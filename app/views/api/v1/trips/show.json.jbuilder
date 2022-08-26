@@ -10,3 +10,4 @@ json.bookmark_id @bookmark_id
 json.booking_id @booking_id
 json.has_survey @has_survey
 json.has_answers @has_answers
+json.trip_host @trip_host

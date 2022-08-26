@@ -12,6 +12,7 @@ class Api::V1::TripsController < Api::V1::BaseController
 
   def show
     @trip = Trip.find(params[:id])
+    @trip_host = User.find(@trip.user_id)
     @is_booker = @trip.bookings.find_by(user: @current_user).nil? ? false : true
     @is_saved = @trip.bookmarks.find_by(user: @current_user).nil? ? false : true
     @bookmark_id = @trip.bookmarks.find_by(user: @current_user).id unless @trip.bookmarks.find_by(user: @current_user).nil?
