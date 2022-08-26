@@ -10,4 +10,6 @@ json.bookmark_id @bookmark_id
 json.booking_id @booking_id
 json.has_survey @has_survey
 json.has_answers @has_answers
-json.trip_host @trip_host
+json.trip_host do
+  json.partial! 'api/v1/users/user', { user: @trip_host }
+end
