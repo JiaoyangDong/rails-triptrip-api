@@ -1,4 +1,4 @@
-id = 60
+id = 1
 user = User.find(id)
 
 Trip.create(
