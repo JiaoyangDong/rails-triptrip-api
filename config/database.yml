@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
-  database: rails_triptrip_api_production
-  username: rails_triptrip_api
-  password: <%= ENV["RAILS_TRIPTRIP_API_DATABASE_PASSWORD"] %>
+  database: triptrip_db
+  username: postgres
+  password: f9fb60c6fbb65559925fd6b097be927a
+  host: 172.17.0.2
+  port: 5432
