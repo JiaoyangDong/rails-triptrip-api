@@ -20,7 +20,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def login
     code = params[:code]
-    p code
+    p code # for debugging
     app_id = Rails.application.credentials.dig(:wechat, :app_id)
     app_secret = Rails.application.credentials.dig(:wechat, :app_secret)
 
